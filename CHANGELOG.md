@@ -12,6 +12,11 @@ All notable changes will be documented here. This project follows [Keep a Change
 - REEF reference-implementation architecture.
 - Research, evaluation, synthetic-data, governance, and community artifacts.
 - Canonical product definition for the first REEF proof of concept.
+- Runnable REEF Step 0 FastAPI web application with health and readiness endpoints.
+- Locked Python development environment, automated tests, linting, and type checking.
+- Hardened non-root container and persistent local Docker Compose workflow.
+- GitHub Actions CI plus release-driven multi-architecture GHCR publication, SBOM, and provenance attestation.
+- REEF configuration, operations, persistence, recovery, and release-verification guidance.
 
 ### Changed
 

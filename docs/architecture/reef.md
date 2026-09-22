@@ -4,7 +4,7 @@
 
 REEF (Reusable Effort Estimation Framework) is the vendor-neutral reference implementation of the AI Effort Estimation Framework. It makes the methodology executable without making application behavior the methodology.
 
-The first implementation is a containerized, web-first proof of concept written in Python. It is an early-stage reference application, not a production service or a scientifically validated estimator.
+The first implementation is a containerized, web-first proof of concept written in Python. It is an early-stage reference application, not a production service or a scientifically validated estimator. Step 0 of that implementation—the runnable application shell, SQLite readiness boundary, container packaging, and CI/release delivery baseline—is implemented.
 
 ## Architectural style
 
@@ -40,6 +40,12 @@ This keeps the POC easy to run and demonstrate while preserving boundaries neede
 - **`pyproject.toml`** is the canonical Python project and dependency configuration.
 
 Specific dependency versions will be selected and locked during implementation. These choices do not become framework requirements.
+
+## Delivery architecture
+
+The repository uses GitHub Actions for continuous integration and release delivery. Pull requests and the default branch must pass Python quality checks, tests, public-schema example validation, an image build, and a live-container smoke test. Published GitHub releases produce multi-architecture OCI images in GitHub Container Registry with immutable version and source-revision tags, SBOM and provenance metadata, and a build attestation.
+
+The registry is the Step 0 delivery boundary. Automatic deployment to a shared runtime is deferred until a hosting environment, identity boundary, secrets model, backup policy, and threat model are explicitly selected. Operational behavior and recovery constraints are documented in [`docs/operations/reef.md`](../operations/reef.md).
 
 ## Planned module boundaries
 

@@ -34,7 +34,7 @@ They live together while the proposal evolves so that changes to the methodology
 ├── examples/                Illustrative, non-production inputs
 ├── datasets/synthetic/      Safe synthetic observations
 ├── research/                Hypotheses, experiments, and evaluation protocols
-├── reef/                    Reference implementation scaffold
+├── reef/                    Containerized reference web application
 └── .github/                 Community health and contribution templates
 ```
 
@@ -47,6 +47,10 @@ REEF begins as a containerized, web-first Python application. The first proof of
 The initial user journey is to create or import a project, enter baseline PH and AI-participation context, generate an explainable three-point estimate, save it, record actual PH, and compare the estimate with observations. See the [REEF POC definition](docs/product/reef-poc.md) and [reference architecture](docs/architecture/reef.md).
 
 CLI and SDK interfaces may be added later, but they are not the primary POC experience.
+
+The REEF Step 0 delivery foundation is runnable with Docker Compose and validated through GitHub
+Actions. See the [REEF README](reef/README.md) to run it and the
+[operations guide](docs/operations/reef.md) for its delivery and runtime contract.
 
 ## Public-project boundary
 

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="REEF reference web application">
+    <title>REEF · Reusable Effort Estimation Framework</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="REEF home">REEF</a>
+      <span class="status"><span aria-hidden="true"></span>Step 0 running</span>
+    </header>
+    <main>
+      <p class="eyebrow">Reusable Effort Estimation Framework</p>
+      <h1>The delivery foundation is ready.</h1>
+      <p class="lede">
+        This container is the portable foundation for the REEF web proof of concept.
+        Estimation workflows will arrive in the next implementation increment.
+      </p>
+      <section aria-labelledby="runtime-heading">
+        <h2 id="runtime-heading">Runtime</h2>
+        <dl>
+          <div><dt>Application</dt><dd>REEF {{ version }}</dd></div>
+          <div><dt>Environment</dt><dd>{{ environment }}</dd></div>
+          <div><dt>API</dt><dd><a href="/api/docs">Open interactive documentation</a></dd></div>
+          <div><dt>Readiness</dt><dd><a href="/readyz">Inspect database readiness</a></dd></div>
+        </dl>
+      </section>
+      <aside aria-label="Experimental status">
+        REEF is an experimental reference implementation. It is not yet a validated estimator
+        or a production multi-user service.
+      </aside>
+    </main>
+    <footer>Person-Hours (PH) remain the canonical effort unit.</footer>
+  </body>
+</html>
