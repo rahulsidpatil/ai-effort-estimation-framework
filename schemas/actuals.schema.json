@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rahulsidpatil/ai-effort-estimation-framework/schemas/actuals.schema.json",
+  "title": "AI Effort Actuals",
+  "description": "Draft observation contract for actual human effort.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "observationId", "projectId", "estimateId", "unit", "measurementWindow", "activities"],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "observationId": { "type": "string", "minLength": 1 },
+    "projectId": { "type": "string", "minLength": 1 },
+    "estimateId": { "type": "string", "minLength": 1 },
+    "unit": { "const": "PH" },
+    "measurementWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "string", "format": "date" },
+        "end": { "type": "string", "format": "date" }
+      }
+    },
+    "activities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "actualPH"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "actualPH": { "type": "number", "minimum": 0 },
+          "collectionMethod": { "type": "string" },
+          "qualityNotes": { "type": "string" }
+        }
+      }
+    },
+    "scopeChanges": { "type": "array", "items": { "type": "string" } },
+    "exclusions": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  }
+}

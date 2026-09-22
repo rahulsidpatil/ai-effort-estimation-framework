@@ -1,0 +1,32 @@
+name: Methodology proposal
+description: Propose a change to framework concepts, factors, equations, or evaluation.
+title: "[Methodology]: "
+labels: [methodology, proposal]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include proprietary, client-specific, confidential, or personal data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and intended users
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change and assumptions
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or evaluation plan
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Compatibility, privacy, and ethical risks
+    validations:
+      required: true

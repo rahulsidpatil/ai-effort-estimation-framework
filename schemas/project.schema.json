@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rahulsidpatil/ai-effort-estimation-framework/schemas/project.schema.json",
+  "title": "AI Effort Estimation Project",
+  "description": "Draft input contract for an effort estimate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "name", "referenceMode", "activities"],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "projectId": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "referenceMode": { "type": "string", "minLength": 1 },
+    "activities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "baselinePH", "aiParticipation"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "baselinePH": { "type": "number", "minimum": 0 },
+          "aiParticipation": { "enum": ["none", "advisory", "generative", "agentic"] },
+          "assumptions": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "factors": {
+      "type": "object",
+      "description": "Experimental, estimator-specific factors.",
+      "additionalProperties": { "type": ["number", "string", "boolean"] }
+    },
+    "assumptions": { "type": "array", "items": { "type": "string" } }
+  }
+}

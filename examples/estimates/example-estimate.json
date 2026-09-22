@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "0.1.0",
+  "estimateId": "synthetic-api-modernization-estimate-1",
+  "projectId": "synthetic-api-modernization",
+  "createdAt": "2026-01-02T09:00:00Z",
+  "model": {
+    "name": "illustrative-three-point-estimator",
+    "version": "0.0.0-example"
+  },
+  "unit": "PH",
+  "baselinePH": 820,
+  "rangePH": {
+    "lower": 650,
+    "expected": 710,
+    "upper": 805
+  },
+  "contributions": [
+    {
+      "name": "Illustrative implementation adjustment",
+      "deltaPH": -110,
+      "explanation": "Synthetic value for contract demonstration; not an evidence-based productivity claim."
+    }
+  ],
+  "assumptions": [
+    "All generated changes receive human review.",
+    "Scope remains stable after estimation."
+  ],
+  "warnings": [
+    "This artifact demonstrates the draft schema and is not a validated estimate."
+  ],
+  "inputDigest": "example-only-not-a-real-digest"
+}

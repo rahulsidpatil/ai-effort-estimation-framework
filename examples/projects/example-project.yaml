@@ -1,0 +1,30 @@
+schemaVersion: 0.1.0
+projectId: synthetic-api-modernization
+name: Synthetic API Modernization
+description: A fictional example used only to exercise the draft contract.
+referenceMode: Same scope and team without generative or agentic AI assistance.
+activities:
+  - id: discovery
+    name: Discovery and planning
+    baselinePH: 80
+    aiParticipation: advisory
+    assumptions:
+      - Existing interfaces are documented.
+  - id: implementation
+    name: Implementation
+    baselinePH: 420
+    aiParticipation: generative
+  - id: verification
+    name: Verification
+    baselinePH: 220
+    aiParticipation: generative
+  - id: integration
+    name: Integration and release
+    baselinePH: 100
+    aiParticipation: advisory
+factors:
+  novelty: medium
+  qualityCriticality: high
+assumptions:
+  - Scope remains stable after estimation.
+  - All generated changes receive human review.

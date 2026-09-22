@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rahulsidpatil/ai-effort-estimation-framework/schemas/estimate.schema.json",
+  "title": "AI Effort Estimate",
+  "description": "Draft output contract. All effort values are Person-Hours (PH).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "estimateId", "projectId", "createdAt", "model", "unit", "rangePH", "baselinePH"],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "estimateId": { "type": "string", "minLength": 1 },
+    "projectId": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "unit": { "const": "PH" },
+    "baselinePH": { "type": "number", "minimum": 0 },
+    "rangePH": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "expected", "upper"],
+      "properties": {
+        "lower": { "type": "number", "minimum": 0 },
+        "expected": { "type": "number", "minimum": 0 },
+        "upper": { "type": "number", "minimum": 0 }
+      }
+    },
+    "contributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "deltaPH"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "deltaPH": { "type": "number" },
+          "explanation": { "type": "string" }
+        }
+      }
+    },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "inputDigest": { "type": "string" }
+  }
+}

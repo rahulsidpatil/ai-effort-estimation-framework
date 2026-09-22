@@ -1,0 +1,25 @@
+schemaVersion: 0.1.0
+observationId: synthetic-api-modernization-observation-1
+projectId: synthetic-api-modernization
+estimateId: synthetic-api-modernization-estimate-1
+unit: PH
+measurementWindow:
+  start: "2026-01-05"
+  end: "2026-02-27"
+activities:
+  - id: discovery
+    actualPH: 86
+    collectionMethod: Synthetic illustrative record
+  - id: implementation
+    actualPH: 310
+    collectionMethod: Synthetic illustrative record
+  - id: verification
+    actualPH: 245
+    collectionMethod: Synthetic illustrative record
+  - id: integration
+    actualPH: 112
+    collectionMethod: Synthetic illustrative record
+scopeChanges:
+  - Added one synthetic compatibility endpoint.
+exclusions: []
+notes: No real project, client, employee, or organization is represented.

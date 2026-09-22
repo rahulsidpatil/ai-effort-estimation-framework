@@ -1,0 +1,28 @@
+# Operating systems and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Build and test output
+bin/
+build/
+dist/
+coverage/
+*.coverprofile
+*.out
+
+# Go
+vendor/
+
+# Generated REEF artifacts
+*.estimate.json
+*.comparison.json
+*.calibration.json
