@@ -1,6 +1,6 @@
 # AI Effort Estimation Framework
 
-An extensible, open-source framework for estimating, tracking, evaluating, and continuously calibrating the effort required for AI-assisted and AI-native software development.
+An extensible, open-source framework for estimating, tracking, evaluating, and continuously calibrating traditional, AI-assisted, and AI-native software and digital engineering engagements.
 
 > **Project status:** Early-stage proposal and reference implementation. The concepts, equations, schemas, and software in this repository are drafts for research and community evaluation; they are not a finalized or scientifically validated estimation model.
 
@@ -16,8 +16,11 @@ They live together while the proposal evolves so that changes to the methodology
 ## Guiding principles
 
 - **Person-Hours (PH)** is the canonical effort unit. A PH is one hour of human effort, regardless of calendar duration or team composition.
+- Effort, elapsed duration, cost, price, and commercial risk are distinct outputs connected by explicit transformations.
 - Estimates are ranges with assumptions and uncertainty, not promises or single-point truths.
 - AI can reduce, shift, or add effort. Review, verification, integration, governance, and rework remain visible.
+- People, organizational friction, business context, and engagement model are first-class inputs.
+- Causal drivers remain explicit; aggregate coefficients may summarize them but may not replace or hide them.
 - Estimates should improve through observations and calibration, not undocumented intuition.
 - Inputs, transformations, outputs, and model versions should be auditable.
 - Extension points should allow different organizations and research groups to test alternative models without changing the core contracts.
@@ -44,7 +47,7 @@ Start with the [framework specification index](docs/framework/README.md), [termi
 
 REEF begins as a containerized, web-first Python application. The first proof of concept is a modular monolith with a browser interface and HTTP API around an interface-independent estimation domain.
 
-The initial user journey is to create or import a project, enter baseline PH and AI-participation context, generate an explainable three-point estimate, save it, record actual PH, and compare the estimate with observations. See the [REEF POC definition](docs/product/reef-poc.md) and [reference architecture](docs/architecture/reef.md).
+The initial user journey is built around the fully synthetic [Case Study 001 — AI-Native Domain Modernization](docs/case-studies/case-study-001-ai-native-domain-modernization.md). A user imports or decomposes scope, describes the delivery system, people, organizational constraints, business context, uncertainty, evidence, and engagement model, then generates an explainable estimate that keeps PH, duration, economics, and commercial exposure separate. See the [REEF POC definition](docs/product/reef-poc.md), [delivery-context model](docs/framework/delivery-context.md), and [reference architecture](docs/architecture/reef.md).
 
 CLI and SDK interfaces may be added later, but they are not the primary POC experience.
 

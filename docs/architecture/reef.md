@@ -2,7 +2,7 @@
 
 ## Role and status
 
-REEF (Reusable Effort Estimation Framework) is the vendor-neutral reference implementation of the AI Effort Estimation Framework. It makes the methodology executable without making application behavior the methodology.
+REEF (Reusable Effort Estimation Framework) is the vendor-neutral reference implementation of the AI Effort Estimation Framework. It serves traditional, AI-assisted, and AI-native software and digital engineering engagements and makes the methodology executable without making application behavior the methodology.
 
 The first implementation is a containerized, web-first proof of concept written in Python. It is an early-stage reference application, not a production service or a scientifically validated estimator. Step 0 of that implementation—the runnable application shell, SQLite readiness boundary, container packaging, and CI/release delivery baseline—is implemented.
 
@@ -20,7 +20,8 @@ Web UI and HTTP API
 Application services
    │
    ▼
-Estimation domain core ───── Framework schemas and model definitions
+Estimation domain core ───── Work, delivery, people, organization,
+   │                         uncertainty, duration, and economics
    │
    ▼
 Repository interfaces ───── SQLite reference adapter
@@ -56,7 +57,12 @@ reef/
 ├── compose.yaml
 ├── src/reef/
 │   ├── domain/           Framework-aligned models and estimation behavior
-│   ├── application/      Use cases and transaction orchestration
+│   │   ├── work/         Work packages, activities, roles, dependencies
+│   │   ├── delivery/     Traditional and AI participation effects
+│   │   ├── context/      People, organization, business, and evidence
+│   │   ├── simulation/   Uncertainty and elapsed-duration behavior
+│   │   └── commercial/   Cost and engagement-specific transformations
+│   ├── application/      Pipeline use cases and transaction orchestration
 │   ├── infrastructure/   Persistence and external adapters
 │   └── web/              FastAPI routes, templates, and static assets
 └── tests/                Unit, contract, integration, and end-to-end tests
@@ -66,26 +72,43 @@ The domain layer must not import FastAPI, templates, SQLite adapters, or organiz
 
 ## POC capabilities
 
-The POC exposes browser and HTTP API workflows to:
+The POC exposes browser and HTTP API workflows to run the canonical pipeline:
 
-1. create or import a project;
-2. enter baseline PH by activity and describe AI participation;
-3. validate input against the public contracts;
-4. generate and save an explainable three-point PH estimate;
-5. record actual PH; and
-6. compare estimated and actual effort.
+```text
+Sanitized specification and context
+              ↓
+      Work decomposition
+              ↓
+ Reference PH by package/activity/role
+              ↓
+ Delivery-mode and explicit AI effects
+              ↓
+ People and organizational-friction model
+              ↓
+  Uncertainty propagation and risk reserve
+              ↓
+  Capacity/dependency duration simulation
+              ↓
+        Cost transformation
+              ↓
+ Engagement-specific commercial view
+              ↓
+ Evidence, confidence, lineage, and actuals
+```
 
-Calibration is represented in the architecture and contracts but is not required for the first interactive POC.
+The pipeline is staged so that a user can inspect each transformation. It follows the [delivery-context contract](../framework/delivery-context.md) and [ADR-0001](decisions/0001-explicit-causal-drivers.md). P50 and P80 are produced only by an estimator with probabilistically meaningful outputs.
+
+Calibration in the POC demonstrates versioning and comparison using synthetic actuals. Fitting and validating a real-world model remains outside the first interactive POC.
 
 ## Extension points
 
-Planned interfaces include estimators, factor catalogs, repositories, input/output adapters, identity providers, and reporters. Extensions must declare compatibility and may not silently reinterpret canonical fields.
+Planned interfaces include scope decomposers, effort estimators, factor catalogs, uncertainty models, duration simulators, cost models, engagement models, repositories, input/output adapters, identity providers, and reporters. Extensions must declare compatibility and may not silently reinterpret canonical fields or collapse distinct units.
 
 An organization-specific product should be able to consume REEF as a Python package or implement the public contracts independently. Private authentication, infrastructure, delivery processes, integrations, data, and calibrated parameters do not belong in public REEF.
 
 ## Reproducibility and safety
 
-Every estimate should identify the application, schema, and model versions plus a deterministic input digest. Logs must avoid source content, prompts, credentials, personal data, and confidential operational data by default. Calibration artifacts must retain lineage without embedding restricted observations.
+Every estimate should identify the application, schema, scenario, component-model, and parameter versions plus a deterministic input digest and random seed where relevant. Logs must avoid source content, prompts, credentials, personal data, and confidential operational data by default. Calibration artifacts must retain lineage without embedding restricted observations. Case-study ingestion and fixtures must follow the [publication and sanitization contract](../case-studies/README.md#publication-and-sanitization-contract).
 
 The POC is designed for local or controlled evaluation. Production concerns such as multi-tenancy, enterprise identity, high availability, and regulated-data operation require separate design and threat review.
 

@@ -2,7 +2,16 @@
 
 ## Purpose
 
-The taxonomy describes where AI participates in delivery without assuming a productivity effect. Effects are empirical questions, not category definitions.
+The taxonomy describes where AI participates in delivery without assuming a productivity effect. Effects are empirical questions, not category definitions. REEF can use the same activity model for traditional, AI-assisted, AI-native, and mixed-mode delivery.
+
+## Delivery modes
+
+- **Traditional:** no material AI participation in the modeled workflow.
+- **AI-assisted:** humans own the workflow while AI participates in selected activities.
+- **AI-native:** the workflow is intentionally designed around AI-mediated or agentic execution with explicit human authority and controls.
+- **Mixed:** participation differs materially by activity or work package and is recorded at that level.
+
+These modes describe a delivery system; they do not encode a productivity multiplier.
 
 ## Activity categories
 
@@ -21,6 +30,8 @@ The taxonomy describes where AI participates in delivery without assuming a prod
 - **Agentic:** AI plans or executes multi-step work within bounded authority; humans supervise and approve consequential outcomes.
 
 Record participation per activity. A project-wide label alone is too coarse.
+
+For each materially AI-enabled activity, record gross avoided PH and induced human PH independently. Induced work can include specification and context preparation, orchestration, review, verification, correction, governance, and recovery from tool or model failure.
 
 ## Context dimensions
 

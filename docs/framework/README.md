@@ -7,10 +7,11 @@ This directory is the canonical home of the AI Effort Estimation Framework propo
 1. [`vision.md`](vision.md) — purpose, audience, non-goals, and success criteria.
 2. [`terminology.md`](terminology.md) — normative vocabulary, including Person-Hours (PH).
 3. [`ai-delivery-taxonomy.md`](ai-delivery-taxonomy.md) — delivery activities and levels of AI participation.
-4. [`estimation-model.md`](estimation-model.md) — estimator contract and illustrative decomposition.
-5. [`telemetry.md`](telemetry.md) — observation, minimization, and publication principles.
-6. [`calibration.md`](calibration.md) — versioned learning from observations.
-7. [`evaluation.md`](evaluation.md) — metrics, protocol requirements, and interpretation.
+4. [`delivery-context.md`](delivery-context.md) — work, delivery mode, people, organizational friction, business context, and engagement models.
+5. [`estimation-model.md`](estimation-model.md) — estimator pipeline, output contract, and causal decomposition.
+6. [`telemetry.md`](telemetry.md) — observation, minimization, and publication principles.
+7. [`calibration.md`](calibration.md) — versioned, evolution-aware learning from observations.
+8. [`evaluation.md`](evaluation.md) — metrics, protocol requirements, and interpretation.
 
 ## Authority and maturity
 
