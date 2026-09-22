@@ -23,6 +23,12 @@ Before 1.0, breaking changes are expected and must be documented. Releases shoul
 
 Participants should disclose financial, organizational, or research interests that could reasonably affect a proposal. Maintainers may ask a conflicted reviewer to recuse from a final decision.
 
+## Independence and contribution provenance
+
+REEF is governed as a vendor-neutral public project. Adoption by, or inspiration for, an organization-specific product does not make that product or organization authoritative over the public framework.
+
+Contributors are responsible for confirming that they have the right to submit their work, including compliance with applicable employment, client, open-source, and invention-assignment obligations. Proprietary methods, private integrations, restricted data, and organization-specific calibrated parameters are not accepted.
+
 ## Conduct and security
 
 Conduct concerns follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Vulnerabilities follow [SECURITY.md](SECURITY.md).

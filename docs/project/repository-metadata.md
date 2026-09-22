@@ -2,11 +2,11 @@
 
 ## Suggested GitHub description
 
-Extensible framework and REEF reference implementation for estimating, tracking, evaluating, and calibrating AI software-delivery effort.
+Open framework and containerized REEF web app for estimating, tracking, evaluating, and calibrating AI software-delivery effort.
 
 ## Suggested topics
 
-`effort-estimation`, `software-engineering`, `generative-ai`, `ai-agents`, `developer-productivity`, `calibration`, `research`, `open-source`
+`effort-estimation`, `software-engineering`, `generative-ai`, `ai-agents`, `python`, `fastapi`, `docker`, `calibration`, `research`, `open-source`
 
 ## Website
 

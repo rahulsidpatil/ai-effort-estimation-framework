@@ -29,6 +29,7 @@ They live together while the proposal evolves so that changes to the methodology
 .
 ├── docs/framework/          Canonical framework proposal
 ├── docs/architecture/       REEF reference architecture
+├── docs/product/            REEF product scope and acceptance criteria
 ├── schemas/                 Draft interoperable data contracts
 ├── examples/                Illustrative, non-production inputs
 ├── datasets/synthetic/      Safe synthetic observations
@@ -39,19 +40,17 @@ They live together while the proposal evolves so that changes to the methodology
 
 Start with the [framework specification index](docs/framework/README.md), [terminology](docs/framework/terminology.md), and [estimation model](docs/framework/estimation-model.md). The [roadmap](ROADMAP.md) describes the path from proposal to evaluated releases.
 
-## Illustrative workflow
+## REEF direction
 
-REEF is intended to support a CLI-first workflow such as:
+REEF begins as a containerized, web-first Python application. The first proof of concept is a modular monolith with a browser interface and HTTP API around an interface-independent estimation domain.
 
-```console
-reef init
-reef validate examples/projects/example-project.yaml
-reef estimate examples/projects/example-project.yaml
-reef compare estimate.json examples/observations/example-actuals.yaml
-reef calibrate datasets/synthetic
-```
+The initial user journey is to create or import a project, enter baseline PH and AI-participation context, generate an explainable three-point estimate, save it, record actual PH, and compare the estimate with observations. See the [REEF POC definition](docs/product/reef-poc.md) and [reference architecture](docs/architecture/reef.md).
 
-These commands describe the target interface; they are not yet implemented.
+CLI and SDK interfaces may be added later, but they are not the primary POC experience.
+
+## Public-project boundary
+
+REEF is an independent, vendor-neutral open-source reference implementation. Organization-specific products may adopt or extend its public methodology and contracts, but proprietary processes, data, integrations, identity systems, and calibrated models remain outside this repository.
 
 ## Contributing
 

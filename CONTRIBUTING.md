@@ -7,11 +7,12 @@ Thank you for helping develop the AI Effort Estimation Framework and REEF.
 - Read the [Code of Conduct](CODE_OF_CONDUCT.md) and [governance model](GOVERNANCE.md).
 - Search existing issues and proposals before opening a duplicate.
 - Never contribute proprietary, confidential, client-specific, export-controlled, or personally identifiable information.
+- Do not contribute organization-specific processes, internal integrations, private identity configuration, or privately calibrated models.
 - Use synthetic or explicitly redistributable data. Record its provenance and license.
 
 ## Change types
 
-Framework changes should update the relevant canonical document under `docs/framework/`, explain assumptions and testable consequences, and identify affected schemas or examples. REEF changes should remain conformant with the documented contracts or explicitly propose a contract change.
+Framework changes should update the relevant canonical document under `docs/framework/`, explain assumptions and testable consequences, and identify affected schemas or examples. REEF changes should remain conformant with the documented contracts and [`docs/product/reef-poc.md`](docs/product/reef-poc.md), or explicitly propose a contract change.
 
 For a substantial methodology change, open an issue describing:
 

@@ -19,8 +19,20 @@ coverage/
 *.coverprofile
 *.out
 
-# Go
-vendor/
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local POC data
+*.db
+*.sqlite
+*.sqlite3
 
 # Generated REEF artifacts
 *.estimate.json
