@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guided, simulated preview of the REEF estimation experience.">
+    <title>REEF · Product experience</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/product-experience.css') }}">
+    <script src="{{ url_for('static', path='/product-experience.js') }}" defer></script>
+  </head>
+  <body data-stage-count="{{ stage_count }}">
+    <a class="skip-link" href="#tour-content">Skip to the current tour stage</a>
+    <div class="tour-shell">
+      <aside class="journey-rail" id="journeyRail" aria-label="Estimation journey">
+        <div class="rail-brand">
+          <a href="/" aria-label="REEF home">REEF</a>
+          <span>UX preview</span>
+        </div>
+        <p class="rail-label">A defensible estimate</p>
+        <button class="overview-button active" id="overviewButton" type="button" aria-current="page">
+          <span class="overview-icon" aria-hidden="true">i</span>
+          <span><strong>Tour overview</strong><small>What REEF will demonstrate</small></span>
+        </button>
+        <nav aria-label="Product experience stages">
+          <ol class="journey-list">
+            {% for stage in stages %}
+            <li>
+              <button class="stage-button{% if loop.first %} active{% endif %}" type="button"
+                data-stage-target="{{ loop.index0 }}"{% if loop.first %} aria-current="step"{% endif %}>
+                <span class="stage-number">{{ loop.index }}</span>
+                <span>
+                  <strong>{{ stage.short_name }}</strong>
+                  <small>{{ stage.role }}</small>
+                </span>
+              </button>
+            </li>
+            {% endfor %}
+          </ol>
+        </nav>
+        <div class="rail-note">
+          <strong>Simulation only</strong>
+          <p>No estimate or observation is created. Tour feedback stays in this browser.</p>
+          <a href="/">Return to service status</a>
+        </div>
+      </aside>
+
+      <main class="tour-main" id="tour-content">
+        <header class="tour-topbar">
+          <button class="menu-button" id="menuButton" type="button" aria-controls="journeyRail"
+            aria-expanded="false">Journey</button>
+          <div class="case-context">
+            <span id="contextLabel">Product experience</span>
+            <strong id="contextTitle">What REEF does</strong>
+          </div>
+          <div class="progress-group">
+            <progress id="tourProgress" max="{{ stage_count }}" value="0">Overview</progress>
+            <span id="progressText">Overview</span>
+          </div>
+        </header>
+
+        <div class="stage-wrap">
+          <section class="tour-overview" id="tourOverview" aria-labelledby="overview-title">
+            <div class="overview-hero">
+              <div>
+                <p class="kicker">REEF product experience</p>
+                <h1 id="overview-title">Understand an estimate before committing to it.</h1>
+                <p class="overview-lede">REEF helps delivery teams produce explainable software-effort estimates when AI assistance, uncertainty, and organizational constraints affect the work.</p>
+              </div>
+              <aside class="preview-notice" aria-label="Preview status">
+                <strong>Interactive product preview</strong>
+                <p>The workflow and interactions demonstrate the intended REEF experience. All project data and calculated values are illustrative. This tour does not calculate or save a real estimate.</p>
+              </aside>
+            </div>
+
+            <div class="overview-section" aria-labelledby="reef-outputs-title">
+              <div class="overview-section-heading">
+                <p class="overline">What REEF does</p>
+                <h2 id="reef-outputs-title">Turns a delivery brief and evidence into a decision you can inspect.</h2>
+              </div>
+              <div class="capability-grid">
+                <article><span>01</span><h3>Structure the work</h3><p>Make scope, boundaries, dependencies, and missing information visible.</p></article>
+                <article><span>02</span><h3>Explain the range</h3><p>Show likely and higher-confidence effort with the uncertainty behind both.</p></article>
+                <article><span>03</span><h3>Compare approaches</h3><p>Separate AI benefits, AI overhead, organizational effects, and delivery scenarios.</p></article>
+                <article><span>04</span><h3>Support review</h3><p>Keep assumptions, evidence, warnings, and commercial treatment traceable.</p></article>
+                <article><span>05</span><h3>Learn from delivery</h3><p>Compare the estimate with actual delivery without scoring individual people.</p></article>
+              </div>
+            </div>
+
+            <div class="tour-promise">
+              <section>
+                <p class="overline">What this tour demonstrates</p>
+                <h2>Follow one fictional project from brief to learning.</h2>
+                <p>You will see how an estimation lead, delivery contributors, reviewers, and a commercial lead use the same traceable estimate through ten stages.</p>
+              </section>
+              <section>
+                <p class="overline">By the end, you will understand</p>
+                <ul>
+                  <li>what information REEF needs and why;</li>
+                  <li>how effort ranges and confidence are explained;</li>
+                  <li>how AI benefits, costs, and uncertainty stay visible;</li>
+                  <li>how review and commercial views use one baseline; and</li>
+                  <li>how actual delivery can improve future estimates.</li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="overview-actions">
+              <button class="nav-button overview-start" id="startTour" type="button">Start with the project brief</button>
+              <button class="nav-button secondary overview-explore" id="exploreJourney" type="button">Explore all 10 stages</button>
+              <span>About 10 minutes · no account or data required</span>
+            </div>
+          </section>
+
+          {% for stage in stages %}
+          <section class="tour-stage" data-stage-panel="{{ loop.index0 }}" hidden
+            aria-labelledby="stage-title-{{ loop.index0 }}">
+            <header class="stage-intro">
+              <div>
+                <p class="kicker">{{ stage.kicker }}</p>
+                <h1 id="stage-title-{{ loop.index0 }}">{{ stage.title }}</h1>
+                <p class="user-need"><span>{{ stage.role }}</span> “{{ stage.user_need }}”</p>
+              </div>
+              <span class="time-chip">Stage {{ loop.index }} · about 1 min</span>
+            </header>
+
+            <div class="prototype-window">
+              <div class="window-bar">
+                <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <strong>{{ stage.short_name }}</strong>
+                <span>Illustrative data</span>
+              </div>
+              <div class="screen">
+                {% if stage.key == "brief" %}
+                <div class="screen-heading">
+                  <div><p class="overline">Decision brief</p><h2>Estimate the modernization before bid review</h2></div>
+                  <span class="state-chip fact">Synthetic example</span>
+                </div>
+                <div class="brief-grid">
+                  <article class="primary-card">
+                    <p class="card-label">Decision to support</p>
+                    <h3>Can we responsibly commit to a delivery range and engagement model?</h3>
+                    <p>Replace a mature business capability with modular services while preserving migration, resilience, security, and operational-readiness obligations.</p>
+                    <dl class="brief-facts">
+                      <div><dt>Decision date</dt><dd>12 working days</dd></div>
+                      <div><dt>Estimate owner</dt><dd>Maya · Solution architect</dd></div>
+                      <div><dt>Requested views</dt><dd>Engineering, T&amp;M, Fixed Bid</dd></div>
+                    </dl>
+                  </article>
+                  <div class="stack">
+                    <article class="info-card"><p class="card-label">Available</p><h3>Sanitized specification</h3><p>Scope narrative, seven delivery shapes, acceptance boundaries, and synthetic context.</p></article>
+                    <article class="info-card warning"><p class="card-label">Not yet known</p><h3>Migration volume</h3><p>Material to rehearsal effort and cutover duration.</p></article>
+                  </div>
+                </div>
+                <div class="action-row"><button class="action-button simulation-action" type="button" data-message="Synthetic brief loaded for this preview. Nothing was imported.">Load the sanitized example</button><button class="text-button simulation-action" type="button" data-message="In the working product, this opens the source and sanitization record.">Inspect provenance</button></div>
+
+                {% elif stage.key == "unknowns" %}
+                <div class="screen-heading"><div><p class="overline">Triage</p><h2>Three gaps need a decision before review</h2></div><span class="state-chip warning">3 material unknowns</span></div>
+                <div class="unknown-layout">
+                  <div class="unknown-list">
+                    <button class="unknown-card active" type="button" data-unknown-title="Migration volume and data quality" data-unknown-impact="Could add 420–760 PH and extend the cutover window by 2–4 weeks." data-unknown-action="Request a profile sample before Fixed Bid approval."><span class="impact high">High</span><span><strong>Migration volume and quality</strong><small>Evidence missing · affects effort and duration</small></span></button>
+                    <button class="unknown-card" type="button" data-unknown-title="External approval latency" data-unknown-impact="Does not necessarily add engineering PH, but could extend elapsed duration by 1–3 weeks." data-unknown-action="Model as wait time until the approval SLA is confirmed."><span class="impact medium">Med</span><span><strong>External approval latency</strong><small>Assumption · primarily affects duration</small></span></button>
+                    <button class="unknown-card" type="button" data-unknown-title="Team familiarity" data-unknown-impact="Affects ramp-up PH, review intensity, and achievable parallelism." data-unknown-action="Compare familiar and mixed-team scenarios."><span class="impact medium">Med</span><span><strong>Team familiarity</strong><small>Unknown · affects multiple stages</small></span></button>
+                  </div>
+                  <aside class="detail-card" aria-live="polite"><p class="card-label">Why it matters</p><h3 id="unknownTitle">Migration volume and data quality</h3><p id="unknownImpact">Could add 420–760 PH and extend the cutover window by 2–4 weeks.</p><div class="recommendation"><strong>Recommended next action</strong><span id="unknownAction">Request a profile sample before Fixed Bid approval.</span></div></aside>
+                </div>
+
+                {% elif stage.key == "work" %}
+                <div class="screen-heading"><div><p class="overline">Proposed decomposition</p><h2>Review work packages, boundaries, and evidence</h2></div><span class="state-chip">Draft · not accepted</span></div>
+                <div class="work-table" role="table" aria-label="Proposed work packages">
+                  <div class="work-row header" role="row"><span role="columnheader">Work package</span><span role="columnheader">Boundary</span><span role="columnheader">Evidence</span><span role="columnheader">State</span></div>
+                  <div class="work-row" role="row"><strong role="cell">Delivery foundation</strong><span role="cell">CI/CD, environments, observability</span><span role="cell">Operational smoke tests</span><span role="cell" class="status good">Covered</span></div>
+                  <div class="work-row selected" role="row"><strong role="cell">Domain slices × 4</strong><span role="cell">API, rules, persistence, tests</span><span role="cell">Acceptance scenarios</span><span role="cell" class="status review">Review count</span></div>
+                  <div class="work-row" role="row"><strong role="cell">Data migration</strong><span role="cell">Profile through fallback</span><span role="cell">Reconciliation report</span><span role="cell" class="status risk">Unknown volume</span></div>
+                  <div class="work-row" role="row"><strong role="cell">Operational readiness</strong><span role="cell">Runbooks, transition, SLOs</span><span role="cell">Readiness review</span><span role="cell" class="status good">Covered</span></div>
+                </div>
+                <div class="trace-note"><strong>Human correction expected</strong><span>The estimator owns the accepted decomposition. REEF records proposed, edited, and accepted versions separately.</span></div>
+                <div class="action-row"><button class="action-button simulation-action" type="button" data-message="The domain-slice count was marked for review. No work package changed.">Flag the domain-slice count</button><button class="text-button simulation-action" type="button" data-message="Preview only: the proposed decomposition was not accepted.">Preview acceptance</button></div>
+
+                {% elif stage.key == "delivery" %}
+                <div class="screen-heading"><div><p class="overline">Delivery reality</p><h2>Represent causal effects separately</h2></div><span class="state-chip warning">2 assumptions need owners</span></div>
+                <div class="delivery-grid">
+                  <section class="control-card"><p class="card-label">Delivery mode</p><fieldset class="segmented" id="deliveryMode"><legend class="visually-hidden">Select illustrative delivery mode</legend><label><input type="radio" name="delivery-mode" value="traditional"><span>Traditional</span></label><label><input type="radio" name="delivery-mode" value="assisted" checked><span>AI-assisted</span></label><label><input type="radio" name="delivery-mode" value="native"><span>AI-native</span></label></fieldset><p class="control-note">Selection follows you into scenario comparison.</p></section>
+                  <section class="control-card"><div class="label-line"><p class="card-label">Approval latency</p><output id="latencyOutput" for="latencyRange">8 working days</output></div><input id="latencyRange" type="range" min="2" max="20" value="8" step="1"><p class="control-note" id="latencyEffect">Illustrative schedule effect: +1.1 weeks. Engineering PH unchanged.</p></section>
+                </div>
+                <div class="effect-grid">
+                  <article><span class="effect-sign benefit">−</span><div><p>Gross AI benefit</p><strong>1,400 PH</strong><small>Generation, search, and automation</small></div></article>
+                  <article><span class="effect-sign overhead">+</span><div><p>AI-induced overhead</p><strong>500 PH</strong><small>Specification, review, correction, governance</small></div></article>
+                  <article><span class="effect-sign friction">+</span><div><p>Organizational effects</p><strong>210 PH + wait</strong><small>Enablement and approval latency remain separate</small></div></article>
+                </div>
+
+                {% elif stage.key == "evidence" %}
+                <div class="screen-heading"><div><p class="overline">Evidence register</p><h2>Confidence follows evidence quality</h2></div><span class="state-chip warning">Moderate confidence</span></div>
+                <div class="evidence-summary"><div><span>12</span><small>Evidence items</small></div><div><span>5</span><small>Explicit assumptions</small></div><div><span>3</span><small>Material unknowns</small></div><div><span>2</span><small>Correlated risks</small></div></div>
+                <div class="evidence-list">
+                  <article><span class="evidence-type strong">Strong</span><div><strong>Delivery foundation reference</strong><p>Comparable synthetic work package with acceptance evidence.</p></div><span class="state-chip fact">Reference</span></article>
+                  <article><span class="evidence-type medium">Medium</span><div><strong>AI-assisted implementation effect</strong><p>Experimental parameter range; review overhead explicitly included.</p></div><span class="state-chip">Distribution</span></article>
+                  <article><span class="evidence-type weak">Weak</span><div><strong>Migration complexity</strong><p>Placeholder distribution pending data-profile evidence.</p></div><span class="state-chip warning">Decision needed</span></article>
+                </div>
+                <div class="trace-note"><strong>Correlation warning</strong><span>Migration complexity and external approval latency may compound cutover risk. Treating them as independent would understate the upper range.</span></div>
+
+                {% elif stage.key == "scenarios" %}
+                <div class="screen-heading"><div><p class="overline">Illustrative comparison</p><h2>Compare delivery choices with their causes attached</h2></div><span class="state-chip warning">Not a computed estimate</span></div>
+                <fieldset class="scenario-picker" id="scenarioPicker"><legend>Select a scenario</legend><label><input type="radio" name="scenario" value="traditional"><span><strong>Traditional</strong><small>Human-led delivery</small></span></label><label><input type="radio" name="scenario" value="assisted" checked><span><strong>AI-assisted</strong><small>Targeted copilots and agents</small></span></label><label><input type="radio" name="scenario" value="native"><span><strong>AI-native</strong><small>Specification-driven agent workflows</small></span></label></fieldset>
+                <div class="metric-grid" aria-live="polite">
+                  <article><p>P50 effort</p><strong id="metricP50">4,300 PH</strong><small>50% probability of not exceeding</small></article>
+                  <article><p>P80 effort</p><strong id="metricP80">5,500 PH</strong><small>80% probability of not exceeding</small></article>
+                  <article><p>Elapsed duration</p><strong id="metricDuration">29 weeks</strong><small>Capacity, dependency, and wait constraints</small></article>
+                  <article><p>Net AI effect</p><strong id="metricNet">−900 PH</strong><small id="metricEffectDetail">−1,400 gross + 500 overhead</small></article>
+                </div>
+                <div class="causal-trace"><p class="card-label">Selected scenario trace</p><div><span>Reference work<br><strong>5,200 PH</strong></span><b>→</b><span>Gross AI benefit<br><strong id="traceBenefit">−1,400 PH</strong></span><b>→</b><span>AI overhead<br><strong id="traceOverhead">+500 PH</strong></span><b>→</b><span>Context + uncertainty<br><strong>Distribution</strong></span></div></div>
+
+                {% elif stage.key == "review" %}
+                <div class="screen-heading"><div><p class="overline">Estimate review</p><h2>Challenge assumptions before accepting a version</h2></div><span class="state-chip warning">2 open findings</span></div>
+                <div class="review-layout">
+                  <div class="finding-list">
+                    <article><span class="severity high">High</span><div><strong>Migration range lacks profile evidence</strong><p>P80 sensitivity is material. Resolve before a Fixed Bid commitment.</p><div class="finding-actions"><button class="small-button finding-action" type="button" data-resolution="Evidence requested">Request evidence</button><button class="small-button secondary finding-action" type="button" data-resolution="Accepted as an explicit commercial risk">Accept risk</button></div></div><output>Open</output></article>
+                    <article><span class="severity medium">Med</span><div><strong>AI correction rate is experimental</strong><p>The selected range is visible and can be scenario-tested.</p><div class="finding-actions"><button class="small-button finding-action" type="button" data-resolution="Sensitivity comparison requested">Compare sensitivity</button></div></div><output>Open</output></article>
+                    <article><span class="severity low">Low</span><div><strong>Operational-readiness boundary confirmed</strong><p>Runbooks, transition, and reliability acceptance are included.</p></div><output>Resolved</output></article>
+                  </div>
+                  <aside class="version-card"><p class="card-label">Candidate version</p><h3>Estimate v0.3</h3><dl><div><dt>Input digest</dt><dd>8e7c…a21f</dd></div><div><dt>Model</dt><dd>synthetic-poc/0.1</dd></div><div><dt>Warnings</dt><dd>2 open</dd></div></dl><button class="action-button simulation-action" type="button" data-message="Preview only: Estimate v0.3 was not accepted or persisted.">Preview acceptance</button></aside>
+                </div>
+
+                {% elif stage.key == "commercial" %}
+                <div class="screen-heading"><div><p class="overline">Engagement view</p><h2>Keep the engineering baseline unchanged</h2></div><span class="state-chip fact">Shared baseline · 4,300 PH</span></div>
+                <div class="commercial-layout">
+                  <div class="commercial-tabs" role="tablist" aria-label="Commercial engagement views"><button id="tab-tm" type="button" role="tab" aria-selected="true" aria-controls="commercialPanel" data-commercial="tm">T&amp;M</button><button id="tab-fixed" type="button" role="tab" aria-selected="false" aria-controls="commercialPanel" data-commercial="fixed">Fixed Bid</button><button id="tab-managed" type="button" role="tab" aria-selected="false" aria-controls="commercialPanel" data-commercial="managed">Managed Service</button></div>
+                  <section class="commercial-panel" id="commercialPanel" role="tabpanel" aria-labelledby="tab-tm" tabindex="0"><div><p class="card-label">Engineering baseline</p><strong>4,300 PH</strong><small>Does not change with engagement view</small></div><div><p class="card-label">Commercial treatment</p><strong id="commercialTreatment">Bill observed effort at synthetic role rates</strong><small id="commercialDetail">Client retains volume and productivity variance.</small></div><div><p class="card-label">Primary risk owner</p><strong id="commercialOwner">Client</strong><small>Risk allocation is explicit, not hidden in PH.</small></div></section>
+                </div>
+                <div class="honesty-note"><strong>Why this separation matters</strong><span>Price, contingency, and commercial exposure may change. The engineering estimate remains a traceable statement about expected delivery effort.</span></div>
+
+                {% elif stage.key == "actuals" %}
+                <div class="screen-heading"><div><p class="overline">Observation window · iteration 1</p><h2>Explain variance with realized context</h2></div><span class="state-chip">Synthetic actuals</span></div>
+                <div class="variance-grid">
+                  <article><p>Estimated effort</p><strong>1,120 PH</strong><small>Iteration-specific P50</small></article><article><p>Observed effort</p><strong>1,205 PH</strong><small class="negative">+7.6% variance</small></article><article><p>Estimated duration</p><strong>7.5 weeks</strong><small>With approval assumption</small></article><article><p>Observed duration</p><strong>9.0 weeks</strong><small class="negative">+1.5 weeks</small></article>
+                </div>
+                <div class="actuals-layout">
+                  <div class="observed-list"><article><span>Scope</span><strong>One integration added</strong><small>+64 PH observed</small></article><article><span>Approval wait</span><strong>13 vs 8 working days</strong><small>+1 week elapsed time</small></article><article><span>AI correction</span><strong>11% vs 8% assumed</strong><small>+31 PH review and correction</small></article></div>
+                  <aside class="ethics-card"><p class="card-label">Use responsibly</p><h3>Not an employee score</h3><p>Variance describes the estimate, scope, and delivery context. REEF does not rank individual performance.</p></aside>
+                </div>
+                <div class="action-row"><button class="action-button simulation-action" type="button" data-message="Preview only: no observation was recorded.">Preview observation record</button></div>
+
+                {% elif stage.key == "learning" %}
+                <div class="screen-heading"><div><p class="overline">Versioned learning</p><h2>Preserve history while testing what comes next</h2></div><span class="state-chip fact">Original immutable</span></div>
+                <div class="learning-flow"><article><p class="card-label">Accepted estimate</p><h3>v0.3 remains unchanged</h3><p>Inputs, assumptions, warnings, model identity, and digest stay bound to the decision record.</p></article><b aria-hidden="true">→</b><article><p class="card-label">Observed evidence</p><h3>New context cohort</h3><p>Scope change, latency, and correction effort are retained without blaming the delivery team.</p></article><b aria-hidden="true">→</b><article><p class="card-label">Candidate model</p><h3>v0.4 must earn adoption</h3><p>Evaluate against later held-out observations and the prior model before release.</p></article></div>
+                <form class="feedback-card" id="feedbackForm">
+                  <div class="feedback-heading"><div><p class="card-label">Help validate this experience</p><h3>What would make this useful in a real estimate review?</h3></div><span>Stored locally · never submitted</span></div>
+                  <fieldset><legend>How confident are you that you understand the proposed journey?</legend><div class="rating" id="ratingGroup">{% for score in range(1, 6) %}<label><input type="radio" name="confidence" value="{{ score }}"><span>{{ score }}</span></label>{% endfor %}</div></fieldset>
+                  <label class="field"><span>Your role</span><select name="role"><option value="">Select a perspective</option><option>Estimation or solution lead</option><option>Engineering or delivery reviewer</option><option>Commercial lead</option><option>Delivery lead</option><option>Researcher or model owner</option></select></label>
+                  <label class="field"><span>Most valuable part</span><textarea name="valuable" rows="3" placeholder="What helped you make or review a decision?"></textarea></label>
+                  <label class="field"><span>Confusing or missing</span><textarea name="missing" rows="3" placeholder="What would block you in a real engagement?"></textarea></label>
+                  <div class="feedback-actions"><button class="action-button" type="button" id="saveFeedback">Save in this browser</button><button class="text-button" type="button" id="copyFeedback">Copy feedback</button><button class="text-button" type="button" id="downloadFeedback">Download .txt</button></div>
+                  <button class="text-button" type="button" id="clearFeedback">Clear local copy</button>
+                  <p class="feedback-status" id="feedbackStatus" role="status">No feedback has been submitted. This preview has no feedback server.</p>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="stage-guide">
+              <div><strong>{{ stage.guidance }}</strong><p>Use the representative controls to explore the intended behavior. They do not call estimation or persistence APIs.</p></div>
+              <div class="tour-nav"><button class="nav-button secondary previous-button" type="button">{% if loop.first %}Tour overview{% else %}Previous{% endif %}</button><button class="nav-button next-button" type="button"{% if loop.last %} disabled{% endif %}>{% if loop.last %}Tour complete{% else %}Next stage{% endif %}</button></div>
+            </div>
+          </section>
+          {% endfor %}
+        </div>
+      </main>
+    </div>
+    <button class="rail-backdrop" id="railBackdrop" type="button" aria-label="Close journey navigation" hidden></button>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

@@ -48,6 +48,8 @@ The repository uses GitHub Actions for continuous integration and release delive
 
 The registry is the Step 0 delivery boundary. Automatic deployment to a shared runtime is deferred until a hosting environment, identity boundary, secrets model, backup policy, and threat model are explicitly selected. Operational behavior and recovery constraints are documented in [`docs/operations/reef.md`](../operations/reef.md).
 
+The `/product-experience` route is a presentation-only simulation used to validate the complete user journey before its domain behavior exists. Its structured content, server-rendered template, and static interaction assets may describe domain concepts but must not calculate or persist estimates. Production slices replace simulations behind stable user concepts rather than moving prototype logic into the domain.
+
 ## Planned module boundaries
 
 ```text

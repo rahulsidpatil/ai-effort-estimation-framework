@@ -17,6 +17,8 @@ All notable changes will be documented here. This project follows [Keep a Change
 - Hardened non-root container and persistent local Docker Compose workflow.
 - GitHub Actions CI plus release-driven multi-architecture GHCR publication, SBOM, and provenance attestation.
 - REEF configuration, operations, persistence, recovery, and release-verification guidance.
+- User-centered REEF product-experience contract and ten-stage interactive UX tour.
+- Local-only tour feedback with copy and download options and no submission service.
 - Canonical delivery-context model covering work, delivery modes, people, organization, business context, uncertainty, and engagement models.
 - Synthetic Case Study 001, reusable case-study template, publication sanitization contract, and causal-driver architecture decision.
 

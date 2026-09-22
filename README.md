@@ -55,6 +55,10 @@ The REEF Step 0 delivery foundation is runnable with Docker Compose and validate
 Actions. See the [REEF README](reef/README.md) to run it and the
 [operations guide](docs/operations/reef.md) for its delivery and runtime contract.
 
+The presentation-only [REEF product experience](docs/product/reef-product-experience.md) lets
+estimation and delivery practitioners evaluate the intended journey before estimation logic is
+implemented.
+
 ## Public-project boundary
 
 REEF is an independent, vendor-neutral open-source reference implementation. Organization-specific products may adopt or extend its public methodology and contracts, but proprietary processes, data, integrations, identity systems, and calibrated models remain outside this repository.

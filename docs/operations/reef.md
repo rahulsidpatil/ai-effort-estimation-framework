@@ -25,7 +25,8 @@ docker compose up --build
 ```
 
 Open <http://localhost:8000>. The API documentation is at
-<http://localhost:8000/api/docs>. Stop the service with:
+<http://localhost:8000/api/docs>. The presentation-only UX tour is at
+<http://localhost:8000/product-experience>. Stop the service with:
 
 ```sh
 docker compose down

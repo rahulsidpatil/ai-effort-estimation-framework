@@ -18,6 +18,7 @@ from starlette.responses import Response
 from reef.config import Settings
 from reef.infrastructure.database import database_is_ready, initialize_database
 from reef.web.logging import configure_logging
+from reef.web.tour import TOUR_STAGES
 
 LOGGER = logging.getLogger("reef.web")
 WEB_ROOT = Path(__file__).parent
@@ -59,7 +60,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "no-referrer"
         response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; style-src 'self'; img-src 'self'; frame-ancestors 'none'"
+            "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; "
+            "connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"
         )
         LOGGER.info(
             "HTTP request completed",
@@ -80,6 +82,18 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             name="index.html",
             context={
                 "environment": runtime_settings.environment,
+                "version": runtime_settings.application_version,
+            },
+        )
+
+    @app.get("/product-experience", response_class=HTMLResponse, include_in_schema=False)
+    async def product_experience(request: Request) -> HTMLResponse:
+        return templates.TemplateResponse(
+            request=request,
+            name="product_experience.html",
+            context={
+                "stages": TOUR_STAGES,
+                "stage_count": len(TOUR_STAGES),
                 "version": runtime_settings.application_version,
             },
         )

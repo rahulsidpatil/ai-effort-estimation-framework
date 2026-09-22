@@ -2,7 +2,7 @@
 
 REEF (Reusable Effort Estimation Framework) is the vendor-neutral reference software implementation of the [framework](../docs/framework/vision.md) for traditional, AI-assisted, and AI-native software and digital engineering engagements.
 
-> **Status:** Step 0 delivery foundation implemented. The runnable web shell, SQLite readiness boundary, container packaging, automated validation, and release-image publication are in place. Estimation workflows remain to be implemented.
+> **Status:** Step 0 delivery foundation and the presentation-only product experience are implemented. Estimation workflows remain simulated and must not be treated as calculated or persisted results.
 
 ## Responsibilities
 
@@ -39,7 +39,9 @@ docker compose up --build
 ```
 
 Open <http://localhost:8000>. The page identifies the build as the delivery foundation and does
-not imply that estimation behavior is complete. See the [operations guide](../docs/operations/reef.md)
+not imply that estimation behavior is complete. Open <http://localhost:8000/product-experience>
+to evaluate the simulated, user-centered journey. See the [product-experience contract](../docs/product/reef-product-experience.md)
+and [operations guide](../docs/operations/reef.md)
 for configuration, health endpoints, persistence, release artifacts, and recovery constraints.
 
 For Python development, install the locked environment and run the checks from `reef/`:

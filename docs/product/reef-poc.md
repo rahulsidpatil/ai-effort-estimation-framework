@@ -8,7 +8,7 @@ The case study preserves only generic estimation characteristics such as staged 
 
 ## Target user
 
-The initial user is a software-delivery practitioner, estimator, commercial lead, or researcher who wants to construct an explicit estimate, understand its assumptions and causal contributors, compare engagement views, and later compare the estimate with observations.
+The primary construction user is an estimation lead, solution architect, or accountable delivery lead who must produce a defensible estimate under time pressure and incomplete information. Engineering and delivery contributors supply context; engineering and delivery reviewers challenge the estimate; commercial leads derive engagement views; delivery leads record actuals; and researchers or model owners evaluate learning. These roles, their jobs, and their handoffs are defined in the [REEF product experience](reef-product-experience.md).
 
 ## Primary journey
 
